@@ -1,7 +1,112 @@
-<b>Hello word</b>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Assurance Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<iframe
-  src="https://quansight.github.io/jupyterlite-demo/repl/index.html?kernel=python&code=import numpy as np"
-  width="100%"
-  height="100%"
-></iframe>
+    <style>
+      .post {
+        border: 1px solid #ccc;
+        margin: 12px;
+        border-radius: 4px;
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: 60px 1fr;
+        padding: 8px
+      }
+      .user {
+        padding: 10px;
+        border-radius: 50px;
+        width: 50px;
+        height: 50px;
+        background: #ccc;
+        align-items: center;
+        display: flex;
+        place-content: center;
+      }
+      .content {
+        padding: 4px
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="post container">
+      <div class="user"><i class="bi bi-person-fill"></i></div>
+      <div class="content">
+        <p>I'm testing out this simple logistic regression model but it does not work, how can I fix that?</p>
+        <code data-run>
+          from sklearn import datasets
+          from sklearn.linear_model import LogisticRegression
+
+          X, y = datasets.load_digits(return_X_y=True)
+          y = (y > 4).astype(int)
+
+          model = LogisticRegression(penalty="l1", tol=0.01)
+          model.fit(X, y)
+        </code>
+      </div>
+    </div>
+
+    <div class="post container">
+      <div class="user"><i class="bi bi-person-fill"></i></div>
+      <div class="content">
+        <p>You need to change solver, by passing an argument like this <code>solver="saga"</code>, see below:</p>
+        <code data-run>
+          from sklearn import datasets
+          from sklearn.linear_model import LogisticRegression
+
+          X, y = datasets.load_digits(return_X_y=True)
+          y = (y > 4).astype(int)
+
+          model = LogisticRegression(penalty="l1", tol=0.01, solver="saga")
+          model.fit(X, y)
+        </code>
+      </div>
+    </div>
+
+    <script>
+    const styles = `
+    .jp-CodeConsole-banner {
+      display: none;
+    }
+    `;
+    var styleSheet = document.createElement("style")
+    styleSheet.textContent = styles;
+
+    for (const codeEl of document.querySelectorAll('code[data-run]')) {
+      const iframe = document.createElement('iframe');
+      const code = codeEl.textContent;
+      // find indent
+      let indent = 0;
+      for (const line of code.split('\n')) {
+        if (line.length === 0) {
+          continue
+        }
+        while (line.length > indent && line.substring(indent, indent + 1) === ' ') {
+          indent += 1;
+        }
+        break;
+      }
+      let cleanCode = '';
+      for (const line of code.split('\n')) {
+        if (cleanCode === '' && line.length === 0) {
+          continue
+        }
+        cleanCode += line.substring(indent) + '\n';
+      }
+      iframe.src = `https://quansight.github.io/jupyterlite-demo/repl/index.html?kernel=python&toolbar=1&code=${cleanCode}`;
+      iframe.document.head.appendChild(styleSheet);
+      iframe.style.width = '100%';
+      iframe.style.height = '300px';
+      codeEl.replaceWith(iframe);
+    }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  </body>
+</html>
+

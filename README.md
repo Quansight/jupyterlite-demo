@@ -4,9 +4,10 @@
 
 JupyterLite deployed as a static site to GitHub Pages, for demo purposes.
 
-## ✨ Try it in your browser ✨
+## Try it in your browser
 
-➡️ **https://quansight.github.io/jupyterlite-demo/**
+➡️ https://quansight.github.io/jupyterlite-demo/
+➡️ https://quansight.github.io/jupyterlite-demo/files/demo.html
 
 ## Requirements
 
