@@ -1,5 +1,6 @@
 {
     "jupyter-lite-schema-version": 0,
+    "appName": "AI Assurance Portal",
     "jupyter-config-data": {
       "disabledExtensions": [
         "@jupyterlab/drawio-extension",
@@ -8,5 +9,4 @@
         "@jupyterlite/application-extension:logo"
       ]
     }
-  }
-  
+}
