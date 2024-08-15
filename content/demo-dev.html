@@ -82,11 +82,11 @@
       display: none;
     }
     `;
-    var styleSheet = document.createElement("style");
     const loader = document.getElementById('loader');
-    styleSheet.textContent = styles;
 
     for (const codeEl of document.querySelectorAll('code[data-run]')) {
+      const styleSheet = document.createElement("style");
+      styleSheet.textContent = styles;
       const iframe = document.createElement('iframe');
       const code = codeEl.textContent;
       // find indent
