@@ -6,7 +6,9 @@
         "@jupyterlab/drawio-extension",
         "jupyterlab-kernel-spy",
         "jupyterlab-tour",
-        "@jupyterlite/application-extension:logo"
+        "@jupyterlite/application-extension:logo",
+        "jupyterlab-nebari-mode:logo",
+        "@jupyter-notebook/lab-extension:interface-switcher"
       ]
     }
 }
