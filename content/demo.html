@@ -30,6 +30,9 @@
       .content {
         padding: 4px
       }
+      code[data-run] {
+        white-space: pre-wrap;
+      }
     </style>
   </head>
   <body>
@@ -98,11 +101,14 @@
         }
         cleanCode += line.substring(indent) + '\n';
       }
+      codeEl.textContent = cleanCode;
       iframe.src = `https://quansight.github.io/jupyterlite-demo/repl/index.html?kernel=python&toolbar=1&code=${cleanCode}`;
-      iframe.document.head.appendChild(styleSheet);
       iframe.style.width = '100%';
       iframe.style.height = '300px';
-      codeEl.replaceWith(iframe);
+      iframe.onload = () => {
+        iframe.contentDocument.head.appendChild(styleSheet);
+        codeEl.replaceWith(iframe);
+      }
     }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
