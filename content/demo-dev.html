@@ -10,12 +10,14 @@
     <style>
       .post {
         border: 1px solid #ccc;
-        margin: 12px;
         border-radius: 4px;
         display: grid;
         grid-auto-flow: column;
         grid-template-columns: 60px 1fr;
         padding: 8px
+      }
+      .post, .title-header {
+        margin: 12px;
       }
       .user {
         align-items: center;
@@ -33,7 +35,7 @@
         border: 1px solid #666;
       }
       .content {
-        padding: 4px
+        padding: 8px;
       }
       code[data-run] {
         margin-left: 94px;
@@ -52,47 +54,51 @@
   </head>
   <body>
 
-    <div class="post container">
-      <div class="user">
-        <div class="user-logo" style="background: lightblue">
-          <i class="bi bi-person-fill"></i>
+    <div class="container">
+      <div class="row title-header">
+        <h2>AI Assurance Portal</h2>
+      </div>
+      <div class="post row">
+        <div class="user">
+          <div class="user-logo" style="background: lightblue">
+            <i class="bi bi-person-fill"></i>
+          </div>
+          M. K.
         </div>
-        M. K.
-      </div>
-      <div class="content">
-        <p>I'm testing out this simple logistic regression model but it does not work, how can I fix that?</p>
-        <code data-run>
-          from sklearn import datasets
-          from sklearn.linear_model import LogisticRegression
+        <div class="content">
+          <p>I'm testing out this simple logistic regression model but it does not work, how can I fix that?</p>
+          <code data-run>
+            from sklearn import datasets
+            from sklearn.linear_model import LogisticRegression
 
-          X, y = datasets.load_digits(return_X_y=True)
-          y = (y > 4).astype(int)
+            X, y = datasets.load_digits(return_X_y=True)
+            y = (y > 4).astype(int)
 
-          model = LogisticRegression(penalty="l1", tol=0.01)
-          model.fit(X, y)
-        </code>
-      </div>
-    </div>
-
-    <div class="post container">
-      <div class="user">
-        <div class="user-logo" style="background: lightgoldenrodyellow">
-          <i class="bi bi-person-fill"></i>
+            model = LogisticRegression(penalty="l1", tol=0.01)
+            model.fit(X, y)
+          </code>
         </div>
-        D. P.
       </div>
-      <div class="content">
-        <p>You need to change solver, by passing an argument like this <code>solver="saga"</code>, see below:</p>
-        <code data-run>
-          from sklearn import datasets
-          from sklearn.linear_model import LogisticRegression
+      <div class="post row">
+        <div class="user">
+          <div class="user-logo" style="background: lightgoldenrodyellow">
+            <i class="bi bi-person-fill"></i>
+          </div>
+          D. P.
+        </div>
+        <div class="content">
+          <p>You need to change solver, by passing an argument like this <code>solver="saga"</code>, see below:</p>
+          <code data-run>
+            from sklearn import datasets
+            from sklearn.linear_model import LogisticRegression
 
-          X, y = datasets.load_digits(return_X_y=True)
-          y = (y > 4).astype(int)
+            X, y = datasets.load_digits(return_X_y=True)
+            y = (y > 4).astype(int)
 
-          model = LogisticRegression(penalty="l1", tol=0.01, solver="saga")
-          model.fit(X, y)
-        </code>
+            model = LogisticRegression(penalty="l1", tol=0.01, solver="saga")
+            model.fit(X, y)
+          </code>
+        </div>
       </div>
     </div>
 
@@ -152,9 +158,9 @@
           if (iframe.contentDocument) {
             iframe.contentDocument.head.appendChild(styleSheet);
             const jupyter = await getJupyterApp(iframe);
-            jupyter.commands.execute('console:replace-selection', {text: cleanCode});
             jupyter.restored.then(() => {
               codeEl.replaceWith(iframe);
+              jupyter.commands.execute('console:replace-selection', {text: cleanCode});
             });
           } else {
             codeEl.replaceWith(iframe);
