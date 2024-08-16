@@ -10,7 +10,6 @@
         "jupyterlab-nebari-mode:logo",
         "@jupyter-notebook/lab-extension:interface-switcher"
       ],
-      "exposeAppInBrowser": true,
-      "enableServiceWorkerCache": true
+      "exposeAppInBrowser": true
     }
 }
