@@ -42,13 +42,14 @@
         white-space: pre;
         font-size: 13px;
         display: block;
-        margin-top: 65px;
+        padding-top: 65px;
       }
-      code[data-run], iframe {
+      code[data-run], .code-wrapper, iframe {
         height: 400px;
+        width: 100%
       }
-      #loader {
-        display: none;
+      .code-wrapper {
+        position: relative;
       }
     </style>
   </head>
@@ -102,8 +103,6 @@
       </div>
     </div>
 
-    <div id="loader"></div>
-
     <script>
     const styles = `
     .jp-CodeConsole-banner {
@@ -125,8 +124,6 @@
       throw Error(`Could not acquite 'jupyterapp' object in ${maxAttempts * pause} ms`);
     }
     async function load() {
-      const loader = document.getElementById('loader');
-
       for (const codeEl of document.querySelectorAll('code[data-run]')) {
         const styleSheet = document.createElement("style");
         styleSheet.textContent = styles;
@@ -154,19 +151,26 @@
         codeEl.textContent = cleanCode;
         iframe.src = `https://quansight.github.io/jupyterlite-demo/repl/index.html?kernel=python&toolbar=1`;
         iframe.style.width = '100%';
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('code-wrapper');
+        codeEl.replaceWith(wrapper);
+        wrapper.appendChild(codeEl)
+        wrapper.appendChild(iframe);
+        iframe.style.display = 'none';
         iframe.onload = async () => {
           if (iframe.contentDocument) {
             iframe.contentDocument.head.appendChild(styleSheet);
             const jupyter = await getJupyterApp(iframe);
             jupyter.restored.then(() => {
-              codeEl.replaceWith(iframe);
+              codeEl.style.display = 'none';
+              iframe.style.display = 'block';
               jupyter.commands.execute('console:replace-selection', {text: cleanCode});
             });
           } else {
-            codeEl.replaceWith(iframe);
+            codeEl.style.display = 'none';
+            iframe.style.display = 'block';
           }
         }
-        loader.appendChild(iframe);
       }
     }
     load()
