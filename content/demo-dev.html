@@ -18,14 +18,19 @@
         padding: 8px
       }
       .user {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+      }
+      .user-logo {
         padding: 10px;
         border-radius: 50px;
         width: 50px;
         height: 50px;
-        background: #ccc;
         align-items: center;
         display: flex;
         place-content: center;
+        border: 1px solid #666;
       }
       .content {
         padding: 4px
@@ -41,7 +46,12 @@
   <body>
 
     <div class="post container">
-      <div class="user"><i class="bi bi-person-fill"></i></div>
+      <div class="user">
+        <div class="user-logo" style="background: lightblue">
+          <i class="bi bi-person-fill"></i>
+        </div>
+        M. K.
+      </div>
       <div class="content">
         <p>I'm testing out this simple logistic regression model but it does not work, how can I fix that?</p>
         <code data-run>
@@ -58,7 +68,12 @@
     </div>
 
     <div class="post container">
-      <div class="user"><i class="bi bi-person-fill"></i></div>
+      <div class="user">
+        <div class="user-logo" style="background: lightgoldenrodyellow">
+          <i class="bi bi-person-fill"></i>
+        </div>
+        D. P.
+      </div>
       <div class="content">
         <p>You need to change solver, by passing an argument like this <code>solver="saga"</code>, see below:</p>
         <code data-run>
