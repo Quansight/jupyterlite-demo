@@ -118,7 +118,7 @@
       iframe.onload = () => {
         if (iframe.contentDocument) {
           iframe.contentDocument.head.appendChild(styleSheet);
-          iframe.contentDocument.jupyterlab.commands.execute('console:replace-selection', {text: cleanCode})
+          iframe.contentDocument.jupyterapp.commands.execute('console:replace-selection', {text: cleanCode})
         }
         codeEl.replaceWith(iframe);
       }
