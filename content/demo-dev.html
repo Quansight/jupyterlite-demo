@@ -9,7 +9,7 @@
 
     <style>
       .post {
-        border: 1px solid #ccc;
+        border: 1px solid #999;
         border-radius: 4px;
         display: grid;
         grid-auto-flow: column;
@@ -38,23 +38,34 @@
         padding: 8px;
       }
       code[data-run] {
-        margin-left: 94px;
         white-space: pre;
         font-size: 13px;
-        display: flex;
-        align-items: flex-end;
-      }
-      code[data-run], .code-wrapper, iframe {
-        height: 400px;
-      }
-      code[data-run] {
+        display: block;
+        padding: 10px;
+        position: absolute;
+        right: 8px;
+        bottom: 8px;
+        top: 215px;
+        left: 90px;
+        background: rgb(245, 245, 245);
         border: 1px solid #ccc;
+      }
+      .code-wrapper, iframe {
+        height: 400px;
       }
       iframe {
         width: 100%
       }
       .code-wrapper {
         position: relative;
+        border: 1px solid #ccc;
+      }
+      .spinner-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        scale: 3;
       }
     </style>
   </head>
@@ -165,7 +176,15 @@
         const wrapper = document.createElement('div');
         wrapper.classList.add('code-wrapper');
         codeEl.replaceWith(wrapper);
-        wrapper.appendChild(codeEl)
+        wrapper.appendChild(codeEl);
+
+        const spinerWrapper = document.createElement('div');
+        const spiner = document.createElement('div');
+        spinerWrapper.appendChild(spiner);
+        spinerWrapper.className = "spinner-wrapper";
+        spiner.className = 'spinner-border text-primary';
+        wrapper.appendChild(spinerWrapper);
+
         wrapper.appendChild(iframe);
         iframe.style.display = 'none';
         iframe.onload = async () => {
@@ -175,6 +194,7 @@
             jupyter.restored.then(() => {
               codeEl.style.display = 'none';
               iframe.style.display = 'block';
+              spinerWrapper.style.display = 'none';
             });
             jupyter.shell.currentChanged.connect((shell, change) => {
               jupyter.commands.execute('console:replace-selection', {text: cleanCode});
@@ -182,6 +202,7 @@
           } else {
             codeEl.style.display = 'none';
             iframe.style.display = 'block';
+            spinerWrapper.style.display = 'none';
           }
         }
       }
@@ -191,4 +212,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
-
