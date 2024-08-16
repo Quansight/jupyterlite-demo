@@ -133,9 +133,14 @@
       iframe.onload = () => {
         if (iframe.contentDocument) {
           iframe.contentDocument.head.appendChild(styleSheet);
-          iframe.contentDocument.jupyterapp.commands.execute('console:replace-selection', {text: cleanCode})
+          const jupyter = iframe.contentWindow.jupyterapp;
+          jupyter.commands.execute('console:replace-selection', {text: cleanCode});
+          jupyter.restored.then(() => {
+            codeEl.replaceWith(iframe);
+          })
+        } else {
+          codeEl.replaceWith(iframe);
         }
-        codeEl.replaceWith(iframe);
       }
       loader.appendChild(iframe);
     }
