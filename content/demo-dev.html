@@ -148,7 +148,7 @@
         codeEl.textContent = cleanCode;
         iframe.src = `https://quansight.github.io/jupyterlite-demo/repl/index.html?kernel=python&toolbar=1`;
         iframe.style.width = '100%';
-        iframe.onload = () => {
+        iframe.onload = async () => {
           if (iframe.contentDocument) {
             iframe.contentDocument.head.appendChild(styleSheet);
             const jupyter = await getJupyterApp(iframe);
