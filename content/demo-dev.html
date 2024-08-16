@@ -36,7 +36,14 @@
         padding: 4px
       }
       code[data-run] {
-        white-space: pre-wrap;
+        margin-left: 94px;
+        white-space: pre;
+        font-size: 13px;
+        display: block;
+        margin-top: 65px;
+      }
+      code[data-run], iframe {
+        height: 400px;
       }
       #loader {
         display: none;
@@ -129,7 +136,6 @@
       codeEl.textContent = cleanCode;
       iframe.src = `https://quansight.github.io/jupyterlite-demo/repl/index.html?kernel=python&toolbar=1`;
       iframe.style.width = '100%';
-      iframe.style.height = '400px';
       iframe.onload = () => {
         if (iframe.contentDocument) {
           iframe.contentDocument.head.appendChild(styleSheet);
