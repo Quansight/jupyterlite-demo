@@ -9,7 +9,8 @@
         "@jupyterlite/application-extension:logo",
         "jupyterlab-nebari-mode:logo",
         "@jupyter-notebook/lab-extension:interface-switcher",
-        "@jupyterlite/server-extension:service-worker"
+        "@jupyterlite/server-extension:service-worker",
+        "@jupyterhub/jupyter-server-proxy"
       ],
       "exposeAppInBrowser": true
     }

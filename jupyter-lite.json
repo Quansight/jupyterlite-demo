@@ -3,7 +3,8 @@
     "appName": "AI Assurance Portal",
     "jupyter-config-data": {
       "disabledExtensions": [
-        "@jupyterlite/application-extension:logo"
+        "@jupyterlite/application-extension:logo",
+        "@jupyterhub/jupyter-server-proxy"
       ],
       "faviconUrl": "https://raw.githubusercontent.com/nebari-dev/nebari-design/main/symbol/favicon.ico"
     }
