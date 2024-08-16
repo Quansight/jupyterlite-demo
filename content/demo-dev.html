@@ -61,7 +61,7 @@
       <div class="user"><i class="bi bi-person-fill"></i></div>
       <div class="content">
         <p>You need to change solver, by passing an argument like this <code>solver="saga"</code>, see below:</p>
-        <code data-not-run>
+        <code data-run>
           from sklearn import datasets
           from sklearn.linear_model import LogisticRegression
 
@@ -80,6 +80,9 @@
     const styles = `
     .jp-CodeConsole-banner {
       display: none;
+    }
+    .jp-PoweredBy {
+      display: none !important;
     }
     `;
     const loader = document.getElementById('loader');
@@ -109,12 +112,13 @@
         cleanCode += line.substring(indent) + '\n';
       }
       codeEl.textContent = cleanCode;
-      iframe.src = `https://quansight.github.io/jupyterlite-demo/repl/index.html?kernel=python&toolbar=1&code=${encodeURIComponent(cleanCode)}`;
+      iframe.src = `https://quansight.github.io/jupyterlite-demo/repl/index.html?kernel=python&toolbar=1`;
       iframe.style.width = '100%';
-      iframe.style.height = '300px';
+      iframe.style.height = '400px';
       iframe.onload = () => {
         if (iframe.contentDocument) {
           iframe.contentDocument.head.appendChild(styleSheet);
+          iframe.contentDocument.jupyterlab.commands.execute('console:replace-selection', {text: cleanCode})
         }
         codeEl.replaceWith(iframe);
       }

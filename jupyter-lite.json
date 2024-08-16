@@ -4,6 +4,7 @@
     "jupyter-config-data": {
       "disabledExtensions": [
         "@jupyterlite/application-extension:logo"
-      ]
+      ],
+      "faviconUrl": "https://raw.githubusercontent.com/nebari-dev/nebari-design/main/symbol/favicon.ico"
     }
 }
