@@ -80,10 +80,10 @@
           <div class="user-logo" style="background: lightblue">
             <i class="bi bi-person-fill"></i>
           </div>
-          M. K.
+          MK
         </div>
         <div class="content">
-          <p>I'm testing out this simple logistic regression model but it does not work, how can I fix that?</p>
+          <p>Hi, I'm following a tutorial on scikit-learn and having trouble with one of the exercises. I'm trying to build a simple logistic regression model but keep getting a <code>ValueError</code> about the solver not supporting the <code>l1</code> penalty and I'm not sure how to fix it. Any help would be appreciated. Thanks in advance!</p>
           <code data-run>
             from sklearn import datasets
             from sklearn.linear_model import LogisticRegression
@@ -101,10 +101,10 @@
           <div class="user-logo" style="background: lightgoldenrodyellow">
             <i class="bi bi-person-fill"></i>
           </div>
-          D. P.
+          DP
         </div>
         <div class="content">
-          <p>You need to change solver, by passing an argument like this <code>solver="saga"</code>, see below:</p>
+          <p>Hi MK, welcome to the portal. I would be glad to help you out. This is actually a common issue with scikit-learn and isn't very well documented. By default <code>LogisticalRegression</code> uses the <code>lbfgs</code> solver that only supports the <code>l2</code> penalty. If you want to use <code>l1</code> you will need to use a different solver. I pasted some example code below that uses the <code>saga</code> solver (i.e. <code>solver="saga"</code>)</p>
           <code data-run>
             from sklearn import datasets
             from sklearn.linear_model import LogisticRegression
