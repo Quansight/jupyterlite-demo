@@ -149,7 +149,8 @@
           cleanCode += line.substring(indent) + '\n';
         }
         codeEl.textContent = cleanCode;
-        iframe.src = `https://quansight.github.io/jupyterlite-demo/repl/index.html?kernel=python&toolbar=1`;
+        const baseURL = location.href.split('/').slice(0, -2).join('/');
+        iframe.src = baseURL + `/repl/index.html?kernel=python&toolbar=1`;
         iframe.style.width = '100%';
         const wrapper = document.createElement('div');
         wrapper.classList.add('code-wrapper');
@@ -164,6 +165,8 @@
             jupyter.restored.then(() => {
               codeEl.style.display = 'none';
               iframe.style.display = 'block';
+            });
+            jupyter.shell.currentChanged.connect((shell, change) => {
               jupyter.commands.execute('console:replace-selection', {text: cleanCode});
             });
           } else {

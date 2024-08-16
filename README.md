@@ -15,3 +15,11 @@ JupyterLite is being tested against modern web browsers:
 
 - Firefox 90+
 - Chromium 89+
+
+## Developing locally:
+
+```
+pip install -r requirements.txt
+jupyter lite build --contents content && jupyter lite serve
+open http://127.0.0.1:8000/files/demo-dev.html
+```
