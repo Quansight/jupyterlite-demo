@@ -41,11 +41,16 @@
         margin-left: 94px;
         white-space: pre;
         font-size: 13px;
-        display: block;
-        padding-top: 65px;
+        display: flex;
+        align-items: flex-end;
       }
       code[data-run], .code-wrapper, iframe {
         height: 400px;
+      }
+      code[data-run] {
+        border: 1px solid #ccc;
+      }
+      iframe {
         width: 100%
       }
       .code-wrapper {
@@ -140,14 +145,19 @@
           }
           break;
         }
-        let cleanCode = '';
-        let blocks = [];
+        const cleanLines = [];
         for (const line of code.split('\n')) {
-          if (cleanCode === '' && line.length === 0) {
+          if (cleanLines.length === 0 && line.length === 0) {
+            // remove first empty line
             continue
           }
-          cleanCode += line.substring(indent) + '\n';
+          cleanLines.push(line.substring(indent));
         }
+        // remove last empty line
+        if (cleanLines[cleanLines.length - 1] === '') {
+          cleanLines.pop();
+        }
+        const cleanCode = cleanLines.join('\n')
         codeEl.textContent = cleanCode;
         const baseURL = location.href.split('/').slice(0, -2).join('/');
         iframe.src = baseURL + `/repl/index.html?kernel=python&toolbar=1`;
