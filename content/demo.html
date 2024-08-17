@@ -45,20 +45,22 @@
         position: absolute;
         right: 8px;
         bottom: 8px;
-        top: 215px;
         left: 90px;
         background: rgb(245, 245, 245);
         border: 1px solid #ccc;
       }
-      .code-wrapper, iframe {
-        height: 400px;
+      .code-wrapper {
+        height: 350px;
       }
       iframe {
-        width: 100%
+        width: 100%;
+        height: 100%;
       }
       .code-wrapper {
         position: relative;
         border: 1px solid #ccc;
+        resize: vertical;
+        overflow: hidden;
       }
       .spinner-wrapper {
         display: flex;
