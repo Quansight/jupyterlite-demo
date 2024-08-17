@@ -197,7 +197,7 @@
             const jupyter = await getJupyterApp(iframe);
             jupyter.restored.then(() => {
               codeEl.style.display = 'none';
-              iframe.style.display = 'block';
+              iframe.style.opacity = '1';
               spinerWrapper.style.display = 'none';
             });
             jupyter.shell.currentChanged.connect((shell, change) => {

@@ -10,7 +10,14 @@
         "jupyterlab-nebari-mode:logo",
         "@jupyter-notebook/lab-extension:interface-switcher",
         "@jupyterlite/server-extension:service-worker",
-        "@jupyterhub/jupyter-server-proxy"
+        "@jupyterhub/jupyter-server-proxy",
+        "@jupyterlite/terminal",
+        "@jupyterlab/apputils-extension:announcements",
+        "@jupyterlab/apputils-extension:themes-palette-menu",
+        "@jupyterlab/theme-dark-high-contrast-extension:plugin",
+        "@jupyterlite/application-extension:about",
+        "@jupyterlab/pdf-extension:factory",
+        "@jupyter-notebook/lab-extension:launch-tree"
       ],
       "exposeAppInBrowser": true
     }
