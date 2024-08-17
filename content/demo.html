@@ -132,7 +132,7 @@
       display: none !important;
     }
     `;
-    async function getJupyterApp(iframe, pause=50, maxAttempts=100) {
+    async function getJupyterApp(iframe, pause=50, maxAttempts=200) {
       let attempt = 1;
       while (attempt < maxAttempts) {
         if (iframe.contentWindow.jupyterapp) {
