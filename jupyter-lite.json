@@ -6,6 +6,7 @@
         "@jupyterlite/application-extension:logo",
         "@jupyterhub/jupyter-server-proxy"
       ],
+      "terminalsAvailable": true,
       "faviconUrl": "https://raw.githubusercontent.com/nebari-dev/nebari-design/main/symbol/favicon.ico"
     }
 }
